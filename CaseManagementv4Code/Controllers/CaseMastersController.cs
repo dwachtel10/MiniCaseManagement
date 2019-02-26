@@ -89,6 +89,7 @@ namespace CaseManagementv4Code.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            
             return View(caseMaster);
         }
 

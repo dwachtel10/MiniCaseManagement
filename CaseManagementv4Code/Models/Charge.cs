@@ -11,13 +11,18 @@ namespace CaseManagementv4Code.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Charge
     {
         public int ChargeID { get; set; }
+        [Required]
         public int DetailsID { get; set; }
+        [Required]
         public string ChargeName { get; set; }
+        [Required]
         public string Severity { get; set; }
+        [Required]
         public decimal ORCSection { get; set; }
     
         public virtual CaseDetail CaseDetail { get; set; }

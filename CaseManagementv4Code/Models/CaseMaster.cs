@@ -11,7 +11,8 @@ namespace CaseManagementv4Code.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class CaseMaster
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,9 +22,13 @@ namespace CaseManagementv4Code.Models
         }
     
         public int CaseID { get; set; }
+        [Required]
         public int CaseNumber { get; set; }
+        [Required]
         public string Agency { get; set; }
+        [Required]
         public string Judge { get; set; }
+        [Required]
         public System.DateTime FilingDate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

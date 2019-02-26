@@ -11,7 +11,8 @@ namespace CaseManagementv4Code.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class CaseDetail
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,10 +23,15 @@ namespace CaseManagementv4Code.Models
     
         public int DetailsID { get; set; }
         public int CaseID { get; set; }
+        [Required]
         public string DefendantLastName { get; set; }
+        [Required]
         public string DefendantFirstName { get; set; }
+        [Required]
         public string DefendantAddress { get; set; }
+        [Required]
         public string DefendantCity { get; set; }
+        [Required]
         public string DefendantState { get; set; }
     
         public virtual CaseMaster CaseMaster { get; set; }
