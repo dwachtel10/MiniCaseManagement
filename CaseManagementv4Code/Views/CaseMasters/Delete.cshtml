@@ -1,0 +1,56 @@
+﻿@model CaseManagementv4Code.Models.CaseMaster
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+<h3 style="color: red">CAUTION: This will delete all charges and details associated with this Case!</h3>
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>CaseMaster</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CaseNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CaseNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Agency)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Agency)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Judge)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Judge)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FilingDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FilingDate)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

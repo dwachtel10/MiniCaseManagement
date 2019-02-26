@@ -1,0 +1,50 @@
+﻿@model CaseManagementv4Code.Models.Charge
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Charge</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ChargeName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ChargeName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Severity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Severity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ORCSection)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ORCSection)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CaseDetail.DefendantLastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CaseDetail.DefendantLastName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ChargeID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

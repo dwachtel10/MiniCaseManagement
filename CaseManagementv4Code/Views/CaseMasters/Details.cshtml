@@ -1,0 +1,123 @@
+﻿@model CaseManagementv4Code.Models.CaseMaster
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>CaseMaster</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CaseNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CaseNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Agency)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Agency)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Judge)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Judge)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FilingDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FilingDate)
+        </dd>
+        <dd>
+            <table class="table">
+
+                @foreach (var item in Model.CaseDetails)
+                {
+                    <tr>
+                        <th>
+                            Defendant Last Name
+                        </th>
+                        <th>
+                            Defendant First Name
+                        </th>
+                        <th>
+                            Defendant Address
+                        </th>
+                        <th>
+                            Defendant City
+                        </th>
+                        <th>
+                            Defendant State
+                        </th>
+                        <th>Charges</th>
+                        <th>Charge Severity</th>
+                        <th>ORC Section</th>
+
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DefendantLastName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DefendantFirstName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DefendantAddress)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DefendantCity)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DefendantState)
+                        </td>
+                        <td>
+                            @foreach (var charge in item.Charges)
+                            { 
+                                     @Html.DisplayFor(modelItem => charge.ChargeName) <br/>
+
+                            }
+                        </td>
+                        <td>
+                            @foreach (var charge in item.Charges)
+                            {
+                                @Html.DisplayFor(modelItem => charge.Severity) <br />
+                            }
+                        </td>
+                        <td>
+                            @foreach (var charge in item.Charges)
+                            {
+                                @Html.DisplayFor(modelItem => charge.ORCSection) <br />
+
+                            }
+                        </td>
+            @*This degree of information is making the page cluttered*@
+            @*<td>@Html.DisplayFor(modelItem => charge.Severity)</td>*@
+
+            @*<td>@Html.DisplayFor(modelItem => charge.ORCSection)</td>*@
+
+
+                        
+                    
+                </tr>
+                    
+                }
+            </table>
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

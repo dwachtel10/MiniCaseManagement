@@ -1,0 +1,53 @@
+﻿@model IEnumerable<CaseManagementv4Code.Models.CaseMaster>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CaseNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Agency)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Judge)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FilingDate)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CaseNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Agency)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Judge)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FilingDate)
+        </td>
+
+
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.CaseID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.CaseID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.CaseID })
+        </td>
+    </tr>
+}
+
+</table>

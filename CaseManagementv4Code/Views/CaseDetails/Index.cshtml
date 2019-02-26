@@ -1,0 +1,63 @@
+﻿@model IEnumerable<CaseManagementv4Code.Models.CaseDetail>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DefendantLastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DefendantFirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DefendantAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DefendantCity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DefendantState)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CaseMaster.CaseNumber)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.DefendantLastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DefendantFirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DefendantAddress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DefendantCity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DefendantState)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CaseMaster.CaseNumber)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.DetailsID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.DetailsID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.DetailsID })
+        </td>
+    </tr>
+}
+
+</table>

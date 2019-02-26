@@ -1,0 +1,219 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="CaseManagementv4Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CaseDetails">
+          <Key>
+            <PropertyRef Name="DetailsID" />
+          </Key>
+          <Property Name="DetailsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CaseID" Type="int" Nullable="false" />
+          <Property Name="DefendantLastName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DefendantFirstName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DefendantAddress" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DefendantCity" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DefendantState" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CaseMaster">
+          <Key>
+            <PropertyRef Name="CaseID" />
+          </Key>
+          <Property Name="CaseID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CaseNumber" Type="int" Nullable="false" />
+          <Property Name="Agency" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Judge" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="FilingDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Charges">
+          <Key>
+            <PropertyRef Name="ChargeID" />
+          </Key>
+          <Property Name="ChargeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DetailsID" Type="int" Nullable="false" />
+          <Property Name="ChargeName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Severity" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ORCSection" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__CaseDetai__CaseI__276EDEB3">
+          <End Role="CaseMaster" Type="Self.CaseMaster" Multiplicity="1" />
+          <End Role="CaseDetails" Type="Self.CaseDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CaseMaster">
+              <PropertyRef Name="CaseID" />
+            </Principal>
+            <Dependent Role="CaseDetails">
+              <PropertyRef Name="CaseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Charges__Details__286302EC">
+          <End Role="CaseDetails" Type="Self.CaseDetails" Multiplicity="1" />
+          <End Role="Charges" Type="Self.Charges" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CaseDetails">
+              <PropertyRef Name="DetailsID" />
+            </Principal>
+            <Dependent Role="Charges">
+              <PropertyRef Name="DetailsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CaseManagementv4ModelStoreContainer">
+          <EntitySet Name="CaseDetails" EntityType="Self.CaseDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CaseMaster" EntityType="Self.CaseMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Charges" EntityType="Self.Charges" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__CaseDetai__CaseI__276EDEB3" Association="Self.FK__CaseDetai__CaseI__276EDEB3">
+            <End Role="CaseMaster" EntitySet="CaseMaster" />
+            <End Role="CaseDetails" EntitySet="CaseDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Charges__Details__286302EC" Association="Self.FK__Charges__Details__286302EC">
+            <End Role="CaseDetails" EntitySet="CaseDetails" />
+            <End Role="Charges" EntitySet="Charges" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CaseManagementv4Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CaseDetail">
+          <Key>
+            <PropertyRef Name="DetailsID" />
+          </Key>
+          <Property Name="DetailsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CaseID" Type="Int32" Nullable="false" />
+          <Property Name="DefendantLastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DefendantFirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DefendantAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DefendantCity" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DefendantState" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="CaseMaster" Relationship="Self.FK__CaseDetai__CaseI__276EDEB3" FromRole="CaseDetails" ToRole="CaseMaster" />
+          <NavigationProperty Name="Charges" Relationship="Self.FK__Charges__Details__286302EC" FromRole="CaseDetails" ToRole="Charges" />
+        </EntityType>
+        <EntityType Name="CaseMaster">
+          <Key>
+            <PropertyRef Name="CaseID" />
+          </Key>
+          <Property Name="CaseID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CaseNumber" Type="Int32" Nullable="false" />
+          <Property Name="Agency" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Judge" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FilingDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="CaseDetails" Relationship="Self.FK__CaseDetai__CaseI__276EDEB3" FromRole="CaseMaster" ToRole="CaseDetails" />
+        </EntityType>
+        <EntityType Name="Charge">
+          <Key>
+            <PropertyRef Name="ChargeID" />
+          </Key>
+          <Property Name="ChargeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DetailsID" Type="Int32" Nullable="false" />
+          <Property Name="ChargeName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Severity" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ORCSection" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <NavigationProperty Name="CaseDetail" Relationship="Self.FK__Charges__Details__286302EC" FromRole="Charges" ToRole="CaseDetails" />
+        </EntityType>
+        <Association Name="FK__CaseDetai__CaseI__276EDEB3">
+          <End Role="CaseMaster" Type="Self.CaseMaster" Multiplicity="1" />
+          <End Role="CaseDetails" Type="Self.CaseDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CaseMaster">
+              <PropertyRef Name="CaseID" />
+            </Principal>
+            <Dependent Role="CaseDetails">
+              <PropertyRef Name="CaseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Charges__Details__286302EC">
+          <End Role="CaseDetails" Type="Self.CaseDetail" Multiplicity="1" />
+          <End Role="Charges" Type="Self.Charge" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CaseDetails">
+              <PropertyRef Name="DetailsID" />
+            </Principal>
+            <Dependent Role="Charges">
+              <PropertyRef Name="DetailsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CaseManagementv4Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CaseDetails" EntityType="Self.CaseDetail" />
+          <EntitySet Name="CaseMasters" EntityType="Self.CaseMaster" />
+          <EntitySet Name="Charges" EntityType="Self.Charge" />
+          <AssociationSet Name="FK__CaseDetai__CaseI__276EDEB3" Association="Self.FK__CaseDetai__CaseI__276EDEB3">
+            <End Role="CaseMaster" EntitySet="CaseMasters" />
+            <End Role="CaseDetails" EntitySet="CaseDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Charges__Details__286302EC" Association="Self.FK__Charges__Details__286302EC">
+            <End Role="CaseDetails" EntitySet="CaseDetails" />
+            <End Role="Charges" EntitySet="Charges" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CaseManagementv4ModelStoreContainer" CdmEntityContainer="CaseManagementv4Entities">
+          <EntitySetMapping Name="CaseDetails">
+            <EntityTypeMapping TypeName="CaseManagementv4Model.CaseDetail">
+              <MappingFragment StoreEntitySet="CaseDetails">
+                <ScalarProperty Name="DetailsID" ColumnName="DetailsID" />
+                <ScalarProperty Name="CaseID" ColumnName="CaseID" />
+                <ScalarProperty Name="DefendantLastName" ColumnName="DefendantLastName" />
+                <ScalarProperty Name="DefendantFirstName" ColumnName="DefendantFirstName" />
+                <ScalarProperty Name="DefendantAddress" ColumnName="DefendantAddress" />
+                <ScalarProperty Name="DefendantCity" ColumnName="DefendantCity" />
+                <ScalarProperty Name="DefendantState" ColumnName="DefendantState" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CaseMasters">
+            <EntityTypeMapping TypeName="CaseManagementv4Model.CaseMaster">
+              <MappingFragment StoreEntitySet="CaseMaster">
+                <ScalarProperty Name="CaseID" ColumnName="CaseID" />
+                <ScalarProperty Name="CaseNumber" ColumnName="CaseNumber" />
+                <ScalarProperty Name="Agency" ColumnName="Agency" />
+                <ScalarProperty Name="Judge" ColumnName="Judge" />
+                <ScalarProperty Name="FilingDate" ColumnName="FilingDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Charges">
+            <EntityTypeMapping TypeName="CaseManagementv4Model.Charge">
+              <MappingFragment StoreEntitySet="Charges">
+                <ScalarProperty Name="ChargeID" ColumnName="ChargeID" />
+                <ScalarProperty Name="DetailsID" ColumnName="DetailsID" />
+                <ScalarProperty Name="ChargeName" ColumnName="ChargeName" />
+                <ScalarProperty Name="Severity" ColumnName="Severity" />
+                <ScalarProperty Name="ORCSection" ColumnName="ORCSection" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

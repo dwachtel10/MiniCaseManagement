@@ -1,0 +1,64 @@
+﻿@model CaseManagementv4Code.Models.CaseDetail
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>CaseDetail</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DefendantLastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DefendantLastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DefendantFirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DefendantFirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DefendantAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DefendantAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DefendantCity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DefendantCity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DefendantState)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DefendantState)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CaseMaster.CaseNumber)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CaseMaster.CaseNumber)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.DetailsID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
